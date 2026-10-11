@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="todo.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+
+<body>
+    <h1 id="main_head">TO DO LIST</h1>
+    <div id="input" class="gridContainer">
+        <input type="text" placeholder="Enter task to do" id="task-input">
+        <input type="date" id="date-input">
+        <input type="time" id="time-input">
+        <button id="add-task" onclick="addToDo();displayToDo()">Add</button>
+    </div>
+    <div id="todoContainer" class="gridContainer">
+    </div>
+    <button id="newList" onclick="localStorage.clear();
+            todoList = [];
+            displayToDo();">new list</button>
+    <script>
+
+        let todoList_str = localStorage.getItem('todoList');
+        let todoList = JSON.parse(todoList_str) || [];
+        function addToDo() {
+            let inputElement = document.querySelector('#task-input');
+            let todoItem = inputElement.value;
+            if (todoItem === '') {
+                alert('Task not mentioned');
+                return;
+            }
+            let inputElement_date = document.querySelector('#date-input');
+            let todoItem_date = inputElement_date.value;
+            let inputElement_time = document.querySelector('#time-input');
+            let todoItem_time = inputElement_time.value;
+            todoList.push({ item: todoItem, date: todoItem_date, time: todoItem_time });
+            localStorage.setItem('todoList', JSON.stringify(todoList));
+            inputElement.value = '';
+            inputElement_date.value = '';
+            inputElement_time.value = '';
+        }
+
+        function displayToDo() {
+            let todo_List = JSON.parse(localStorage.getItem('todoList')) || todoList;
+            let containerElement = document.querySelector('#todoContainer');
+            let newhtml = '';
+            for (let i = 0; i < todoList.length; i++) {
+                let item = todo_List[i].item;
+                let date = todo_List[i].date;
+                let time = todo_List[i].time;
+                newhtml +=
+                    `
+                    <span id="todo_items_list" class="todo_items_list center">${item}</span>
+                    <span id="todo_items_date" class="center">${date}</span>
+                    <span id="todo_items_time" class="center">${time}</span>
+                <button id="todo_items_del_btn" class="center" onclick="todoList.splice(${i},1); localStorage.setItem('todoList', JSON.stringify(todoList));displayToDo();">delete</button>`;
+            }
+            containerElement.innerHTML = newhtml;
+
+        }
+
+        displayToDo();
+    </script>
+</body>
+
+</html>

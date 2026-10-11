@@ -1,0 +1,75 @@
+  body {
+      text-align: center;
+      place-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+  }
+
+  #main_head {
+      font-family: Arial, Helvetica, sans-serif;
+  }
+
+  #add-task {
+      height: 40px;
+      width: 90px;
+      background-color: green;
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+
+  }
+
+  #task-input {
+      border: 2px solid;
+      height: 30px;
+      width: 300px;
+      margin: 1%;
+      font-size: 15px;
+      font-weight: 500;
+      text-align: center;
+  }
+
+  #date-input {
+      border: 2px solid;
+      height: 30px;
+      width: 130px;
+      margin: 1%;
+      text-align: center;
+  }
+
+  #time-input {
+      border: 2px solid;
+      height: 30px;
+      width: 90px;
+      margin: 1%;
+
+  }
+
+  .gridContainer {
+      /* border: 1px solid; */
+      display: grid;
+      grid-template-columns: 350px 150px 120px 120px;
+      margin-top: 20px;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .gridContainer>* {
+      min-width: 0;
+  }
+
+
+  #todo_items_del_btn {
+      align-items: center;
+      place-items: center;
+      margin-bottom: 10px;
+      height: 30px;
+      width: 80px;
+      color: rgb(48, 11, 11);
+  }
+
+  #newList {
+      height: 30px;
+      width: 100px;
+
+  }
